@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const Promise = require('bluebird');
 
-const { Inventory, User, User } = require('./server/db/models')
+const { Inventory, User, Piece } = require('./server/db/models')
 const db = require('./server/db')
 
 const userDBseed =

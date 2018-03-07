@@ -9,7 +9,7 @@ const Inventory = db.define('inventory', {
         type: Sequelize.STRING
     },
     quantity: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
     }
 })
 

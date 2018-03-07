@@ -5,7 +5,7 @@ const Inventory = require('./inventory')
 
 //User.hasMany(Piece); //piece has userId
 Inventory.belongsTo(Piece); //adds pieceId to inventory table
-Inventory.hasOne(Piece) //adds inventoryId to piece table
+Piece.hasOne(Inventory) //adds inventoryId to piece table
 
 /**
  * If we had any associations to make, this would be a great place to put them!
