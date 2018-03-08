@@ -19,3 +19,32 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.gridWrapper{
+  height: 600px;
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gridSquare{
+  position: relative;
+  height: 27px;
+  width: 27px;
+  margin: 1.5px;
+  border-width: 1.5px;
+  background-color: red;
+}
+
+#toolbarWrapper{
+  height: 600px;
+  width: 300px;
+  background-color: purple;
+}
+
+#homeWrapper{
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+}

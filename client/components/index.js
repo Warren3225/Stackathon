@@ -6,3 +6,8 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+export {default as Grid} from './grid'
+export {default as GridSquare} from './gridSquare'
+export {default as Toolbar} from './toolbar'
+export {default as  Crate} from './crate'
+export {default as Home} from './home'
