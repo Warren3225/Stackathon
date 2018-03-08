@@ -32,15 +32,16 @@ router.delete('/p/crates', (req, res, next) => {
 })
 
 //delete piece
-router.delete('/:id', (req, res, next) => {
-    const pieceId = req.params.id;
-    const pieceToDelete = await Piece.findById(pieceId)
-    pieceToDelete.destroy()
-        .then(() => res.json({ id: pieceId }))
-})
+// router.delete('/:id', (req, res, next) => {
+//     const pieceId = req.params.id;
+//     const pieceToDelete = await Piece.findById(pieceId)
+//     pieceToDelete.destroy()
+//         .then(() => res.json({ id: pieceId }))
+// })
 
 //create a piece 
 router.post('/', (req, res, next) => {
+    console.log(req.body)
     Piece.create(req.body)
         .then(piece => res.json(piece))
         .catch(next)
