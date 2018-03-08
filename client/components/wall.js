@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import drake from '../dragula';
-import Dragula from 'react-dragula'
 
 
 export default class Wall extends Component {

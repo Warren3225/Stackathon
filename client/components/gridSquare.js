@@ -13,7 +13,7 @@ export default class GridSquare extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({
       xCoord: this.props.x,
       yCoord: this.props.y
@@ -22,17 +22,16 @@ export default class GridSquare extends Component {
 
   dragulaDecorator = (componentBackingInstance) => {
     if (componentBackingInstance) {
-      let options = { };
       drake.containers.push(componentBackingInstance);
     }
   };
 
   render(){
     return(
-      <div ref={this.dragulaDecorator}>
-        <div className="gridSquare">
+        <div className="gridSquare" ref={this.dragulaDecorator}>
+          <div>
+          </div>
         </div>
-      </div>
     )
   }
 

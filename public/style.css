@@ -61,15 +61,19 @@ form div {
 }
 
 .wall{
-  position: absolute;
-  z-index: 5;
+  margin-left: 1px;
+  padding-top: 1px;
+  position: relative;
   width: 25px;
   height: 25px;
   background-color: black;
 }
 
-.crate{
+.crateContainer{
   margin-top: 62.5px;
+}
+
+.crate{
   z-index: 5;
   width: 25px;
   height: 25px;
