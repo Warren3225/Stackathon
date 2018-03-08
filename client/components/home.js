@@ -9,8 +9,10 @@ export default class Home extends Component {
 
   render(){
     return(
+    <div id="homeWrapper">
       <Toolbar />
       <Grid />
+    </div>
     )
   }
 }

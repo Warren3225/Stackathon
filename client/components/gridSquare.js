@@ -19,7 +19,6 @@ export default class GridSquare extends Component {
   }
 
   render(){
-    console.log(this.props)
     return(
       <div className="gridSquare">
       </div>

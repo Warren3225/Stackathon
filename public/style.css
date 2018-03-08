@@ -35,3 +35,16 @@ form div {
   border-width: 1.5px;
   background-color: red;
 }
+
+#toolbarWrapper{
+  height: 600px;
+  width: 300px;
+  background-color: purple;
+}
+
+#homeWrapper{
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+}
