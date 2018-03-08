@@ -57,7 +57,7 @@ export const deletePieceThunk = (id) =>
 
 export const createPieceThunk = (PieceToAdd) =>
     dispatch =>
-        axios.post('/api/pieces', pieceToAdd)
+        axios.post('/api/pieces', PieceToAdd)
             .then(res => dispatch(createPiece(res.data)))
             .catch(err => console.error(err))
 

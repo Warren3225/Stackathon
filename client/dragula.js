@@ -19,7 +19,7 @@ const drake = dragula({
     copySortSource: false,
 })
 
-// dispatches crate to db
+// dispatches crate/wall to db
 drake.on('drop', (el, target) => {
   let classes = [...target.classList];
   let objToPass = { }
@@ -34,10 +34,11 @@ drake.on('drop', (el, target) => {
     }
   })
   if (el.classList.contains('crate')){
-    objToPass.wallOrCrate = 'crate';
+    objToPass.type = 'crate';
   } else if (el.classList.contains('wall')){
-    objToPass.wallOrCrate = 'wall';
+    objToPass.type = 'wall';
   }
+  console.log(objToPass)
   createPieceThunk(objToPass);
 })
 
