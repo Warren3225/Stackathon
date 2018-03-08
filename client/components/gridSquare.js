@@ -28,7 +28,7 @@ export default class GridSquare extends Component {
 
   render(){
     return(
-        <div className="gridSquare" ref={this.dragulaDecorator}>
+        <div className={`gridSquare x=${this.state.x} y=${this.state.y}`} ref={this.dragulaDecorator}>
           <div>
           </div>
         </div>
