@@ -1,11 +1,12 @@
+import React, { Component } from 'react';
+
 export default class Wall extends Component {
   constructor(){
     super()
   }
 
   componentDidMount() {
-    var container = React.findDOMNode(this);
-    dragula([wallContainer]);
+    //dragula stuff goes here
   }
 
   render(){

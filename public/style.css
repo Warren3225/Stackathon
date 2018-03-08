@@ -48,3 +48,10 @@ form div {
   justify-content: space-around;
   width: 1000px;
 }
+
+.wallWrapper{
+  z-index: 5;
+  width: 25px;
+  height: 25px;
+  color: white;
+}
