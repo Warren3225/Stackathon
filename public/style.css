@@ -49,9 +49,25 @@ form div {
   width: 1000px;
 }
 
-.wallWrapper{
+#topPaneWrapper{
+  display: flex;
+  height: 150px;
+  width: 300px;
+  justify-content: space-around;
+}
+
+.wall{
+  margin-top: 62.5px;
   z-index: 5;
   width: 25px;
   height: 25px;
-  color: white;
+  background-color: black;
+}
+
+.crate{
+  margin-top: 62.5px;
+  z-index: 5;
+  width: 25px;
+  height: 25px;
+  background-color: grey;
 }

@@ -7,7 +7,9 @@ export default class Crate extends Component {
 
   render(){
     return (
-      <div className="wall">
+      <div className="crateContainer">
+        <div className="crate">
+        </div>
       </div>
     )
   }
