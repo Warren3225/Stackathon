@@ -28,19 +28,19 @@ export const fetchAllPieces = () =>
     dispatch =>
         axios.get('api/pieces')
             .then(res => dispatch(getAllPieces(res.data || defaultPieces)))
-            .catch(err => console.log(error));
+            .catch(error => console.log(error));
 
 export const WipeAllPieces = () =>
     dispatch =>
         axios.delete('api/pieces/p/all')
             .then(() => dispatch(deleteAllPieces()))
-            .catch(err => console.log(error));
+            .catch(error => console.log(error));
 
 export const WipeAllCratePieces = () =>
     dispatch =>
         axios.delete('api/pieces/p/crates')
             .then((res) => dispatch(deleteAllCratePieces(res.data)))
-            .catch(err => console.log(error));
+            .catch(error => console.log(error));
 
 //---------------------------------------------
 // export const updatePieceThunk = (piece, id) =>
@@ -59,7 +59,6 @@ export const createPieceThunk = (PieceToAdd) =>
     dispatch =>
         axios.post('/api/pieces', pieceToAdd)
             .then(res => dispatch(createPiece(res.data)))
-            .then(() => history.push('/Pieces'))
             .catch(err => console.error(err))
 
 
