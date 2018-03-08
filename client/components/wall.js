@@ -8,11 +8,6 @@ export default class Wall extends Component {
     super()
   }
 
-  // componentDidMount() {
-  //   var container = this.wallContainer;
-  //   drake.crateWallDrake.containers.push(container)
-  // }
-
   dragulaDecorator = (componentBackingInstance) => {
     if (componentBackingInstance) {
       drake.containers.push(componentBackingInstance);

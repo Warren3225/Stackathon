@@ -3,16 +3,16 @@ import dragula from 'react-dragula'
 const drake = dragula([], {
     isContainer: function (el) {
       console.log(el.classList)
-      if(el.classList.includes('gridSquare')){
+      if (el.classList.contains('gridSquare')){
         return true;
-      }else {
+      } else {
         return false;
       }
     },
       moves: function (el, source, handle, sibling) {
-        if(el.classList.includes('gridSquare')){
+        if (el.classList.contains('gridSquare')){
           return false;
-        }else {
+        } else {
           return true;
         }
     },
