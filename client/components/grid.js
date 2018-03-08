@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GridSquare from './gridSquare';
+import drake from '../dragula'
 
 //creates a 50 X 50 Grid
 export default class Grid extends Component {

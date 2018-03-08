@@ -1,16 +1,21 @@
+import React, { Component } from 'react';
+import drake from '../dragula';
+
+
 export default class Wall extends Component {
   constructor(){
     super()
   }
 
-  componentDidMount() {
-    var container = React.findDOMNode(this);
-    dragula([wallContainer]);
-  }
+  dragulaDecorator = (componentBackingInstance) => {
+    if (componentBackingInstance) {
+      drake.containers.push(componentBackingInstance);
+    }
+  };
 
   render(){
     return (
-      <div className="wallContainer">
+      <div className="wallContainer" ref={this.dragulaDecorator}>
         <div className="wall">
         </div>
       </div>

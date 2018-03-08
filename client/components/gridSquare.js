@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import drake from '../dragula';
+
 
 //creates a 50 X 50 Grid
 export default class GridSquare extends Component {
@@ -11,17 +13,25 @@ export default class GridSquare extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({
       xCoord: this.props.x,
       yCoord: this.props.y
     })
   }
 
+  dragulaDecorator = (componentBackingInstance) => {
+    if (componentBackingInstance) {
+      drake.containers.push(componentBackingInstance);
+    }
+  };
+
   render(){
     return(
-      <div className="gridSquare">
-      </div>
+        <div className={`gridSquare x=${this.state.x} y=${this.state.y}`} ref={this.dragulaDecorator}>
+          <div>
+          </div>
+        </div>
     )
   }
 

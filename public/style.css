@@ -48,3 +48,36 @@ form div {
   justify-content: space-around;
   width: 1000px;
 }
+
+#topPaneWrapper{
+  display: flex;
+  height: 150px;
+  width: 300px;
+  justify-content: space-around;
+}
+
+.wallContainer{
+  margin-top: 62.5px;
+}
+
+.wall{
+  margin-left: 1px;
+  margin-top: 1px;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  background-color: black;
+}
+
+.crateContainer{
+  margin-top: 62.5px;
+}
+
+.crate{
+  margin-left: 1px;
+  margin-top: 1px;
+  z-index: 5;
+  width: 25px;
+  height: 25px;
+  background-color: grey;
+}
