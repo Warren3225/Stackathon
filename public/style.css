@@ -56,8 +56,12 @@ form div {
   justify-content: space-around;
 }
 
-.wall{
+.wallContainer{
   margin-top: 62.5px;
+}
+
+.wall{
+  position: absolute;
   z-index: 5;
   width: 25px;
   height: 25px;
