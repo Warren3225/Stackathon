@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import GridSquare from './gridSquare';
 import drake from '../dragula'
 
-//creates a 50 X 50 Grid
+//creates a 20 X 20 Grid
 export default class Grid extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
   }
 
   //from https://github.com/react-dnd/react-dnd/blob/master/examples/00%20Chessboard/Tutorial%20App/Board.js

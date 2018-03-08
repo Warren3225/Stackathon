@@ -20,7 +20,10 @@ const deleteAllCratePieces = (walls) => ({ type: DELETE_ALL_CRATE_PIECES, walls 
 //---------------------------------------------
 // const updatePiece = piece => ({ type: UPDATE_PIECE, piece })
 const deletePiece = id => ({ type: DELETE_PIECE, id })
-const createPiece = piece => ({ type: CREATE_PIECE, piece })
+const createPiece = piece => {
+    console.log('sdfjnsdf')
+    return { type: CREATE_PIECE, piece }
+}
 
 
 //Thunks
@@ -55,15 +58,16 @@ export const deletePieceThunk = (id) =>
             .then(res => dispatch(removePiece(res.data || defaultPiece)))
             .catch(err => console.error(err))
 
-export const createPieceThunk = (PieceToAdd) =>
-    dispatch =>
-        axios.post('/api/pieces', pieceToAdd)
+export const createPieceThunk = (PieceToAdd) => {
+    return dispatch =>
+        axios.post('/api/pieces', PieceToAdd)
             .then(res => dispatch(createPiece(res.data)))
             .catch(err => console.error(err))
-
+}
 
 //REDUCER
 export default function (state = defaultPieces, action) {
+    console.log(action);
     switch (action.type) {
         case GET_ALL_PIECES:
             return action.pieces;
