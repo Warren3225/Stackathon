@@ -33,13 +33,13 @@ form div {
   width: 27px;
   margin: 1.5px;
   border-width: 1.5px;
-  background-color: red;
+  background-color: #F0F8FF;
 }
 
 #toolbarWrapper{
   height: 600px;
   width: 300px;
-  background-color: purple;
+  background-color: #F0F8FF;
 }
 
 #homeWrapper{
@@ -79,5 +79,5 @@ form div {
   z-index: 5;
   width: 25px;
   height: 25px;
-  background-color: grey;
+  background-color: #A49480;
 }
