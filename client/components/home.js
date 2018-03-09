@@ -14,7 +14,6 @@ class Home extends Component {
     this.state = {
       showModal: false,
     }
-
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -37,6 +36,29 @@ class Home extends Component {
   }
 
   closeModal() {
+    
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+  
+  componentDidMount(){
+    this.props.fetchPieces();
+  }
+  
+  openModal(xCoord, yCoord){
+    let boxOrCrate = this.props.pieces.some( piece => {
+      return(piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
+    })
+    if(boxOrCrate){
+      this.setState({
+        xCoord: xCoord,
+        yCoord: yCoord,
+        showModal: !this.state.showModal
+      })
+    }
+  }
+  
+  closeModal(){
     this.setState({
       showModal: false
     })

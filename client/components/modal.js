@@ -7,9 +7,13 @@ class Modal extends Component {
   constructor(props) {
     super(props)
   }
+  
+  componentDidMount(){
+    this.props.getPiece(this.props.xCoord, this.props.yCoord)
+    console.log(this.props)
+  }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <div id="modal">
@@ -39,7 +43,7 @@ class Modal extends Component {
             </Grid.Column>
           </Grid>
         </div>
-        <div id="modalBackground" onClick={this.props.openModal}>
+        <div id="modalBackground" onClick={this.props.closeModal}>
         </div>
       </div>
     )
@@ -62,4 +66,11 @@ const mapDispatch = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Modal);
+// export default connect(mapState, mapDispatch)(Modal);
+// =======
+// const mapState = ({ piece }) => ({ piece })
+// const mapDispatch = (dispatch) => { return ({
+//   getPiece(x, y){ dispatch(fetchPiece(x, y))},
+// })}
+
+export default connect(mapState, mapDispatch)(Modal)
