@@ -18,7 +18,7 @@ class Home extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.fetchPieces();
   }
 

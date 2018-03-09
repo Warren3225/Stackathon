@@ -29,7 +29,7 @@ export default class GridSquare extends Component {
   };
 
   wallCheck(){
-    if(this.props.pieces) {
+    if(this.props.boardPieces) {
       let boxOrCrate = this.props.boardPieces.some( piece => {
         return(piece.positionX === this.props.x && piece.positionY === this.props.y && piece.wallOrCrate === 'wall')
       })
@@ -38,8 +38,8 @@ export default class GridSquare extends Component {
   }
 
   crateCheck(){
-    if (this.props.pieces) {
-      let boxOrCrate = this.props.pieces.some( piece => {
+    if (this.props.boardPieces) {
+      let boxOrCrate = this.props.boardPieces.some( piece => {
         return (piece.positionX === this.props.x && piece.positionY === this.props.y && piece.wallOrCrate === 'crate')
       })
       return boxOrCrate;
@@ -49,16 +49,14 @@ export default class GridSquare extends Component {
   render() {
     return (
       <div className={`gridSquare x=${this.props.x} y=${this.props.y}`} ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)}>
-        <div>
           {this.crateCheck() ?
-            <div className="wall">
-            </div> : <div></div>
-          }
-          {this.wallCheck() ?
             <div className="crate">
             </div> : <div></div>
           }
-        </div>
+          {this.wallCheck() ?
+            <div className="wall">
+            </div> : <div></div>
+          }
       </div>
     )
   }
