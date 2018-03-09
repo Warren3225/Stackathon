@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react';
+import { fetchPiece } from '../store/piece';
+import { connect } from 'react-redux';
 
-export default class Modal extends Component {
+class Modal extends Component {
   constructor(props) {
     super(props)
+  }
+  
+  componentDidMount(){
+    console.log(this.props)
   }
 
   render() {
@@ -42,3 +48,10 @@ export default class Modal extends Component {
     )
   }
 }
+
+const mapState = ({ piece }) => ({ piece })
+const mapDispatch = (dispatch) => { return ({
+  getPiece(x, y){ dispatch(fetchPiece(x, y))},
+})}
+
+export default connect(mapState, mapDispatch)(Modal)

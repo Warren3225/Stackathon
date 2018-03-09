@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Grid from './grid';
 import Toolbar from './toolbar';
 import Modal from './modal';
@@ -24,11 +24,12 @@ class Home extends Component {
   
   openModal(xCoord, yCoord){
     let boxOrCrate = this.props.pieces.some( piece => {
-      return(piece.positionX === xCoord && piece.positionY === yCoord)
+      return(piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
     })
     if(boxOrCrate){
-      this.props.getPiece(xCoord, yCoord)
       this.setState({
+        xCoord: xCoord,
+        yCoord: yCoord,
         showModal: !this.state.showModal
       })
     }
@@ -43,7 +44,7 @@ class Home extends Component {
   render(){
     return(
     <div id="homeWrapper">
-      {this.state.showModal? <Modal openModal={this.openModal} closeModal={this.closeModal} /> : ''}
+      {this.state.showModal? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
       <Toolbar />
       <Grid openModal={this.openModal} />
     </div>
