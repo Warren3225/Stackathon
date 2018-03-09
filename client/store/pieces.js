@@ -55,7 +55,7 @@ export const WipeAllCratePieces = () =>
 export const deletePieceThunk = (x,y) =>
     dispatch =>
         axios.delete(`/api/pieces/${x}/${y}`)
-            .then(res => dispatch(removePiece(res.data || defaultPiece)))
+            .then(res => dispatch(deletePiece(res.data || defaultPiece)))
             .catch(err => console.error(err))
 
 export const createPieceThunk = (PieceToAdd) => {

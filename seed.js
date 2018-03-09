@@ -18,17 +18,20 @@ const inventoryDBseed =
         {
             category: 'electronics',
             item: 'laptops',
-            quantity: 50
+            quantity: 50,
+            pieceId: 5
         },
         {
             category: 'electronics',
             item: 'PS3',
-            quantity: 100
+            quantity: 100,
+            pieceId: 6
         },
         {
             category: 'electronics',
             item: 'X-box',
-            quantity: 25
+            quantity: 25,
+            pieceId: 7
         }
     ]
 

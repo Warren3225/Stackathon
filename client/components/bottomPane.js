@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
+import { getInventoriesByCategoryThunk, getInventoriesByItemThunk } from '../store/inventory'
 
 
-class BottomPane extends React.Component {
+class BottomPane extends Component {
     constructor(props) {
         super(props)
     }
+
     render() {
         return (
             <div>
@@ -15,21 +18,21 @@ class BottomPane extends React.Component {
                     verticalAlign='middle' >
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as='h2' color='olive' textAlign='center'>
-                            Inventory Data
+                            Get Inventory Data
         </Header>
-                        <Form>
-                            <Form.Field>
-                                <label>Category</label>
-                                <input placeholder='ex. Electronics' />
-                            </Form.Field>
-                            <Form.Field>
-                                <label>Item</label>
-                                <input placeholder='ex. X-Box' />
-                            </Form.Field>
-                            <Form.Field>
-                                <label>Quantity</label>
-                                <input placeholder='ex. 50' />
-                            </Form.Field>
+                        <Form onSubmit={this.props.onCategorySearch}>
+                            <label>Category</label>
+                            <Form.Input
+                                name='category'
+                                placeholder='ex. Electronics' />
+                            <Button type='submit'>Submit</Button>
+                        </Form>
+
+                        <Form onSubmit={this.props.onItemSearch}>
+                            <label>Item</label>
+                            <Form.Input
+                                name='item'
+                                placeholder='ex. Laptops' />
                             <Button type='submit'>Submit</Button>
                         </Form>
                     </Grid.Column>
@@ -37,6 +40,21 @@ class BottomPane extends React.Component {
             </div>
         )
     }
-
 }
-export default BottomPane
+
+const mapState = null;
+
+const mapDispatch = (dispatch, ownProps) => {
+    return {
+        onCategorySearch(event) {
+            event.preventDefault();
+            dispatch(getInventoriesByCategoryThunk(event.target.category.value))
+        },
+        onItemSearch(event) {
+            event.preventDefault();
+            dispatch(getInventoriesByItemThunk(event.target.item.value))
+        }
+    }
+}
+
+export default connect(mapState, mapDispatch)(BottomPane);

@@ -2,14 +2,28 @@ const router = require('express').Router()
 const { Inventory, Piece } = require('../db/models')
 module.exports = router
 
-//get all inventories
-router.get('/', (req, res, next) => {
+//get all inventories by category
+router.get('/category/:category', (req, res, next) => {
     Inventory.findAll({
+        where: { category: req.params.category },
         include: [{ model: Piece }]
     })
         .then(inventory => res.json(inventory))
         .catch(next)
 })
+
+
+//get all inventories by items
+router.get('/item/:item', (req, res, next) => {
+    Inventory.findAll({
+        where: { item: req.params.item },
+        include: [{ model: Piece }]
+    })
+        .then(inventory => res.json(inventory))
+        .catch(next)
+})
+
+
 
 //get inventory for a piece
 router.get('/:x:/y', (req, res, next) => {
@@ -40,8 +54,8 @@ router.post('/:x/:y', (req, res, next) => {
         .catch(next)
 })
 
-//edit inventory
-router.put('/:id', (req, res, next) => {
+//edit inventory //HERE
+router.put('/:id/:x/:y', (req, res, next) => {
     Inventory.findById(req.params.id)
         .then(inventory => inventory.update(
             {
@@ -53,3 +67,12 @@ router.put('/:id', (req, res, next) => {
         .then(inventory => res.json(inventory))
         .catch(next)
 })
+
+// //get all inventories
+// router.get('/', (req, res, next) => {
+//     Inventory.findAll({
+//         include: [{ model: Piece }]
+//     })
+//         .then(inventory => res.json(inventory))
+//         .catch(next)
+// })
