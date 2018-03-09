@@ -20,12 +20,9 @@ class Home extends Component {
   
   componentDidMount(){
     this.props.fetchAllPieces();
-    
   }
   
   openModal(xCoord, yCoord){
-    console.log(this.props.pieces)
-    console.log('x,y', xCoord, yCoord)
     let boxOrCrate = this.props.pieces.some( piece => {
       return(piece.positionX === xCoord && piece.positionY === yCoord)
     })
