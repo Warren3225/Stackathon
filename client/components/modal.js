@@ -9,10 +9,14 @@ class Modal extends Component {
   }
   
   componentDidMount(){
+    this.props.getPiece(this.props.xCoord, this.props.yCoord)
     console.log(this.props)
   }
 
   render() {
+    if(!this.props.piece.id){
+      return ('')
+    }
     return (
       <div>
         <div id="modal">
@@ -23,7 +27,12 @@ class Modal extends Component {
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='olive' textAlign='center'>
                 Inventory Data
-        </Header>
+              </Header>
+              <div>
+                {this.props.piece.id}
+              </div>
+              <div>
+              </div>
               <Form>
                 <Form.Field>
                   <label>Category</label>
