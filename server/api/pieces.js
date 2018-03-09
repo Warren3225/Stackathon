@@ -37,14 +37,13 @@ router.delete('/p/crates', (req, res, next) => {
 router.delete('/:x/:y', (req, res, next) => {
     const xAxis = req.params.x;
     const yAxis = req.params.y;
-    pieceToDelete.destroy({ where: { positionX: xAxis, positionY: yAxis } })
-        .then(() => res.json({ id: pieceId }))
+    Piece.destroy({ where: { positionX: xAxis, positionY: yAxis } })
+        .then( result => res.json({ result }))
 })
 
-//create a piece 
+//create a piece
 router.post('/', (req, res, next) => {
     Piece.create(req.body)
         .then(piece => res.json(piece))
         .catch(next)
 })
-

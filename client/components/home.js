@@ -5,6 +5,7 @@ import Toolbar from './toolbar';
 import Modal from './modal';
 import { fetchPiece } from '../store/piece';
 import { fetchAllPieces } from '../store/pieces';
+import drake from '../dragula'
 
 class Home extends Component {
   constructor(){
@@ -19,7 +20,7 @@ class Home extends Component {
   }
   
   componentDidMount(){
-    this.props.fetchAllPieces();
+    this.props.fetchPieces();
   }
   
   openModal(xCoord, yCoord){
@@ -55,7 +56,7 @@ class Home extends Component {
 const mapState = ({ piece, pieces }) => ({ piece, pieces })
 const mapDispatch = (dispatch) => { return ({
   getPiece(x, y){ dispatch(fetchPiece(x, y))},
-  fetchAllPieces(){ dispatch(fetchAllPieces())}
+  fetchPieces(){ dispatch(fetchAllPieces())}
 })}
 
 

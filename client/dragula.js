@@ -1,9 +1,16 @@
 import dragula from 'react-dragula'
-import { createPieceThunk } from './store/pieces';
+import { createPieceThunk, deletePieceThunk, fetchAllPieces } from './store/pieces';
 import axios from 'axios';
 import store from './store/index'
 
 const drake = dragula({
+  isContainer: function (el) {
+    if (el.classList.contains('gridSquare')) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   moves: function (el, source, handle, sibling) {
     if (el.classList.contains('gridSquare')) {
       return false;
@@ -22,8 +29,23 @@ const drake = dragula({
 })
 
 //drake.on(drag) delete obj at source x, y
+// drake.on('drag', (el, source) => {
+//
+//   store.dispatch(deletePieceThunk(xCoord, yCoord))
+// })
 
-drake.on('drop', (el, target) => {
+drake.on('drop', (el, target, source) => {
+
+  let sourceClasses = [...source.classList];
+  let xCoord = null;
+  let yCoord = null;
+  sourceClasses.forEach(elem => {
+    if (elem[0] === 'x') {
+      xCoord = +elem.slice(2)
+    } else if (elem[0] === 'y') {
+      yCoord = +elem.slice(2)
+    }
+  })
 
   let classes = [...target.classList];
   let objToPass = {}
@@ -41,8 +63,14 @@ drake.on('drop', (el, target) => {
   } else if (el.classList.contains('wall')) {
     objToPass.wallOrCrate = 'wall';
   }
-  store.dispatch(createPieceThunk(objToPass))
-
+  if(xCoord && yCoord){
+  store.dispatch(deletePieceThunk(xCoord, yCoord))
+  store.dispatch(createPieceThunk(objToPass)).then(
+    store.dispatch(fetchAllPieces())
+  )
+  }
 })
+
+// drake.on('drop', () => { store.dispatch(fetchAllPieces()) })
 
 export default drake;
