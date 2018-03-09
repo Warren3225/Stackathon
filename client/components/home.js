@@ -52,6 +52,7 @@ class Home extends Component {
      </div>
    )
  }
+
 }
 
 const mapState = ({ piece, pieces }) => ({ piece, pieces })
