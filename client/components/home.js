@@ -21,7 +21,7 @@ class Home extends Component {
   componentDidMount(){
     this.props.fetchPieces();
   }
-  
+
   openModal(xCoord, yCoord){
     let boxOrCrate = this.props.pieces.some( piece => {
       return(piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
@@ -34,7 +34,7 @@ class Home extends Component {
       })
     }
   }
-  
+
   closeModal(){
     this.setState({
       showModal: false
@@ -48,7 +48,7 @@ class Home extends Component {
       <div id="homeWrapper">
         {this.state.showModal ? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
         <Toolbar />
-        <Grid openModal={this.openModal} />
+        <Grid openModal={this.openModal} boardPieces={this.props.pieces} />
       </div>
     )
   }
