@@ -8,8 +8,12 @@ export default class Modal extends Component {
 
   render(){
     return(
-    <div id="modal">
-    </div>
+      <div>
+        <div id="modal">
+        </div>
+        <div id="modalBackground">
+        </div>
+      </div>
     )
   }
 }
