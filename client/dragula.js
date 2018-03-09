@@ -40,7 +40,6 @@ drake.on('drop', (el, target, source) => {
       yCoord = +elem.slice(2)
     }
   })
-  console.log(xCoord, yCoord)
 
   let classes = [...target.classList];
   let objToPass = {}
@@ -58,18 +57,17 @@ drake.on('drop', (el, target, source) => {
   } else if (el.classList.contains('wall')) {
     objToPass.wallOrCrate = 'wall';
   }
-  if (xCoord >= 0 && yCoord >= 0){
-  console.log('hello');
-  if (xCoord === 'unset' && yCoord === 'unset'){
+  if (xCoord > 0 && yCoord > 0 || xCoord === 'unset' && yCoord === 'unset'){
+    if (xCoord === 'unset' && yCoord === 'unset'){
+      store.dispatch(createPieceThunk(objToPass)).then(
+        store.dispatch(fetchAllPieces())
+      )
+    } else {
+    store.dispatch(deletePieceThunk(xCoord, yCoord))
     store.dispatch(createPieceThunk(objToPass)).then(
       store.dispatch(fetchAllPieces())
     )
-  } else {
-  store.dispatch(deletePieceThunk(xCoord, yCoord))
-  store.dispatch(createPieceThunk(objToPass)).then(
-    store.dispatch(fetchAllPieces())
-  )
-  }
+    }
   }
 })
 

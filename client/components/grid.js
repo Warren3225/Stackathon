@@ -22,7 +22,7 @@ export default class Grid extends Component {
 
   render() {
     const squares = []
-    for (let i = 0; i < 400; i++) {
+    for (let i = 1; i < 401; i++) {
       squares.push(this.renderSquares(i))
     }
     return (
