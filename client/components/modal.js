@@ -1,42 +1,17 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
-
+//creates a 50 X 50 Grid
 export default class Modal extends Component {
-  constructor(props) {
-    super(props)
+  constructor(){
+    super()
+
   }
 
-  render() {
-    return (
+  render(){
+    return(
       <div>
         <div id="modal">
-          <Grid
-            textAlign='center'
-            style={{ height: '100%' }}
-            verticalAlign='middle' >
-            <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as='h2' color='olive' textAlign='center'>
-                Inventory Data
-        </Header>
-              <Form>
-                <Form.Field>
-                  <label>Category</label>
-                  <input placeholder='ex. Electronics' />
-                </Form.Field>
-                <Form.Field>
-                  <label>Item</label>
-                  <input placeholder='ex. X-Box' />
-                </Form.Field>
-                <Form.Field>
-                  <label>Quantity</label>
-                  <input placeholder='ex. 50' />
-                </Form.Field>
-                <Button type='submit'>Submit</Button>
-              </Form>
-            </Grid.Column>
-          </Grid>
         </div>
-        <div id="modalBackground" onClick={this.props.openModal}>
+        <div id="modalBackground" onClick={this.props.closeModal}>
         </div>
       </div>
     )
