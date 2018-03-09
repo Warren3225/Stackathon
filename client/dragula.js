@@ -57,7 +57,7 @@ drake.on('drop', (el, target, source) => {
   } else if (el.classList.contains('wall')) {
     objToPass.wallOrCrate = 'wall';
   }
-  if (xCoord > 0 && yCoord > 0 || xCoord === 'unset' && yCoord === 'unset'){
+  if (xCoord >= 0 && yCoord >= 0 || xCoord === 'unset' && yCoord === 'unset'){
     if (xCoord === 'unset' && yCoord === 'unset'){
       store.dispatch(createPieceThunk(objToPass)).then(
         store.dispatch(fetchAllPieces())
