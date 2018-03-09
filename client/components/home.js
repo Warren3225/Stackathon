@@ -8,12 +8,34 @@ import { fetchAllPieces } from '../store/pieces';
 import drake from '../dragula'
 
 class Home extends Component {
-  constructor(){
+  constructor() {
     super()
-    
+
     this.state = {
       showModal: false,
     }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchPieces();
+  }
+
+  openModal(xCoord, yCoord) {
+    let boxOrCrate = this.props.pieces.some(piece => {
+      return (piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
+    })
+    if (boxOrCrate) {
+      this.setState({
+        xCoord: xCoord,
+        yCoord: yCoord,
+        showModal: !this.state.showModal
+      })
+    }
+  }
+
+  closeModal() {
     
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -42,22 +64,24 @@ class Home extends Component {
     })
   }
 
-  render(){
-    return(
-    <div id="homeWrapper">
-      {this.state.showModal? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
-      <Toolbar />
-      <Grid openModal={this.openModal} />
-    </div>
+  render() {
+    return (
+      <div id="homeWrapper">
+        {this.state.showModal ? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
+        <Toolbar />
+        <Grid openModal={this.openModal} />
+      </div>
     )
   }
 }
 
 const mapState = ({ piece, pieces }) => ({ piece, pieces })
-const mapDispatch = (dispatch) => { return ({
-  getPiece(x, y){ dispatch(fetchPiece(x, y))},
-  fetchPieces(){ dispatch(fetchAllPieces())}
-})}
+const mapDispatch = (dispatch) => {
+  return ({
+    getPiece(x, y) { dispatch(fetchPiece(x, y)) },
+    fetchPieces() { dispatch(fetchAllPieces()) }
+  })
+}
 
 
 export default connect(mapState, mapDispatch)(Home)

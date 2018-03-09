@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react';
-import { fetchPiece } from '../store/piece';
+import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import { postInventoryThunk } from '../store/inventory'
 
 class Modal extends Component {
   constructor(props) {
@@ -14,9 +14,6 @@ class Modal extends Component {
   }
 
   render() {
-    if(!this.props.piece.id){
-      return ('')
-    }
     return (
       <div>
         <div id="modal">
@@ -26,26 +23,21 @@ class Modal extends Component {
             verticalAlign='middle' >
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='olive' textAlign='center'>
-                Inventory Data
-              </Header>
-              <div>
-                {this.props.piece.id}
-              </div>
-              <div>
-              </div>
-              <Form>
-                <Form.Field>
-                  <label>Category</label>
-                  <input placeholder='ex. Electronics' />
-                </Form.Field>
-                <Form.Field>
-                  <label>Item</label>
-                  <input placeholder='ex. X-Box' />
-                </Form.Field>
-                <Form.Field>
-                  <label>Quantity</label>
-                  <input placeholder='ex. 50' />
-                </Form.Field>
+                Add Inventory to Crate
+        </Header>
+              <Form onSubmit={this.props.inventorySubmission}>
+                <label>Category</label>
+                <Form.Input
+                  name='category'
+                  placeholder='category' />
+                <label>Item</label>
+                <Form.Input
+                  name='item'
+                  placeholder='item' />
+                <label>Quantity</label>
+                <Form.Input
+                  name='quantity'
+                  placeholder='Quantity' />
                 <Button type='submit'>Submit</Button>
               </Form>
             </Grid.Column>
@@ -58,9 +50,27 @@ class Modal extends Component {
   }
 }
 
-const mapState = ({ piece }) => ({ piece })
-const mapDispatch = (dispatch) => { return ({
-  getPiece(x, y){ dispatch(fetchPiece(x, y))},
-})}
+const mapState = ({ piece, pieces }) => ({ piece, pieces })
+
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+    inventorySubmission(event) {
+      event.preventDefault();
+      console.log(ownProps)
+      dispatch(postInventoryThunk({
+        category: event.target.category.value,
+        item: event.target.item.value,
+        quantity: event.target.quantity.value
+      }, ownProps.xCoord, ownProps.yCoord))
+    }
+  }
+}
+
+// export default connect(mapState, mapDispatch)(Modal);
+// =======
+// const mapState = ({ piece }) => ({ piece })
+// const mapDispatch = (dispatch) => { return ({
+//   getPiece(x, y){ dispatch(fetchPiece(x, y))},
+// })}
 
 export default connect(mapState, mapDispatch)(Modal)

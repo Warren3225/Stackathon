@@ -14,34 +14,47 @@ const defaultInventories = [];
 //ACTION CREATORS
 const getInventories = inventories => ({ type: GET_INVENTORIES, inventories })
 const getInventoryForPiece = inventory => ({ type: GET_INVENTORY_OF_PIECE, inventory })
-const postInventory = inventory => ({ type: POST_REVIEW, inventory })
+const postInventory = inventory => ({ type: POST_INVENTORY, inventory })
 const editInventory = inventory => ({ type: EDIT_INVENTORY, inventory })
 
 
 //THUNK CREATORS
 
+export const getInventoriesByCategoryThunk = (category) =>
+    dispatch =>
+        axios.get(`/api/inventory/category/${category}`)
+            .then(res => dispatch(getInventories(res.data || defaultInventories)))
+            .catch(err => console.error(err));
+
+export const getInventoriesByItemThunk = (item) =>
+    dispatch =>
+        axios.get(`/api/inventory/item/${item}`)
+            .then(res => dispatch(getInventories(res.data || defaultInventories)))
+            .catch(err => console.error(err));
+
 export const getInventoriesThunk = () =>
     dispatch =>
         axios.get(`/api/inventory/`)
-            .then(res => dispatch(getInventories(res.data || defaultReviews)))
+            .then(res => dispatch(getInventories(res.data || defaultInventories)))
             .catch(err => console.error(err));
+
 
 export const getInventoryForPieceThunk = (x, y) =>
     dispatch =>
         axios.get(`/api/inventory/${x}/${y}`)
-            .then(res => dispatch(getInventoryForPiece(res.data || defaultReviews)))
+            .then(res => dispatch(getInventoryForPiece(res.data || defaultInventories)))
             .catch(err => console.error(err));
 
 export const postInventoryThunk = (inventory, x, y) =>
     dispatch =>
         axios.post(`/api/inventory/${x}/${y}`, inventory)
-            .then(res => dispatch(postInventory(res.data || defaultReviews)))
+            .then(res => dispatch(postInventory(res.data || defaultInventories)))
             .catch(err => console.error(err));
 
 export const editInventoryThunk = (id, inventory) =>
     dispatch =>
         axios.put(`/api/inventory/${id}`, inventory)
-            .then(res => dispatch(editInventory(res.data || defaultReviews)))
+            .then(res => dispatch(editInventory(res.data || defaultInventories)))
             .catch(err => console.error(err));
 
 //REDUCERS
