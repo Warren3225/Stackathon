@@ -47,7 +47,7 @@ export const getInventoryForPieceThunk = (x, y) =>
 
 export const postInventoryThunk = (inventory, x, y) =>
     dispatch =>
-        axios.post(`/api/inventory/${x}/${y}`, inventory)
+        axios.post(`/api/inventory/${x}/${y}/`, inventory)
             .then(res => dispatch(postInventory(res.data || defaultInventories)))
             .catch(err => console.error(err));
 

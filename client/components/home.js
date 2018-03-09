@@ -43,6 +43,8 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props);
+    console.log('state',this.state);
     return (
       <div id="homeWrapper">
         {this.state.showModal ? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}

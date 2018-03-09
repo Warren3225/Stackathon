@@ -27,6 +27,7 @@ export default class GridSquare extends Component {
   };
 
   render(){
+    // console.log(this.props)
     return(
         <div className={`gridSquare x=${this.props.x} y=${this.props.y}`} ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)}>
           <div>
