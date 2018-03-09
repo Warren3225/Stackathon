@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react';
+import { fetchPiece } from '../store/piece';
+import { connect } from 'react-redux';
 
-export default class Modal extends Component {
+class Modal extends Component {
   constructor(props) {
     super(props)
   }
+  
+  componentDidMount(){
+    this.props.getPiece(this.props.xCoord, this.props.yCoord)
+    console.log(this.props)
+  }
 
   render() {
+    if(!this.props.piece.id){
+      return ('')
+    }
     return (
       <div>
         <div id="modal">
@@ -17,7 +27,12 @@ export default class Modal extends Component {
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='olive' textAlign='center'>
                 Inventory Data
-        </Header>
+              </Header>
+              <div>
+                {this.props.piece.id}
+              </div>
+              <div>
+              </div>
               <Form>
                 <Form.Field>
                   <label>Category</label>
@@ -36,9 +51,16 @@ export default class Modal extends Component {
             </Grid.Column>
           </Grid>
         </div>
-        <div id="modalBackground" onClick={this.props.openModal}>
+        <div id="modalBackground" onClick={this.props.closeModal}>
         </div>
       </div>
     )
   }
 }
+
+const mapState = ({ piece }) => ({ piece })
+const mapDispatch = (dispatch) => { return ({
+  getPiece(x, y){ dispatch(fetchPiece(x, y))},
+})}
+
+export default connect(mapState, mapDispatch)(Modal)

@@ -21,9 +21,10 @@ const drake = dragula({
   copySortSource: false,
 })
 
+//drake.on(drag) delete obj at source x, y
 
 drake.on('drop', (el, target) => {
-  
+
   let classes = [...target.classList];
   let objToPass = {}
   classes.forEach(elem => {
