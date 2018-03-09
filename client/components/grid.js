@@ -15,7 +15,7 @@ export default class Grid extends Component {
 
 		return (
 			<div key={i}>
-				<GridSquare x={x} y={y} />
+				<GridSquare x={x} y={y} openModal={this.props.openModal}/>
 			</div>
 		)
   }

@@ -27,6 +27,7 @@ form div {
   flex-wrap: wrap;
   border-width: 2px;
   border-style: solid;
+  background-color: black;
 }
 
 .gridSquare{
@@ -85,4 +86,28 @@ form div {
   width: 25px;
   height: 25px;
   background-color: #A49480;
+}
+
+#modal{
+  margin-top: 100px;
+  z-index: 7;
+  position: fixed;
+  left: 50%;
+  margin-left: -100px;
+  height: 400px;
+  width: 200px;
+  background-color: red;
+
+}
+
+#modalBackground{
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 6;
+  width: 100vw;
+  height: 100vh;
 }
