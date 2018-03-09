@@ -8,14 +8,14 @@ class Modal extends Component {
   constructor(props) {
     super(props)
   }
-  
-  componentDidMount(){
-    this.props.getPiece(this.props.xCoord, this.props.yCoord)
-    console.log(this.props)
-  }
+
+  // componentDidMount(){
+  //   this.props.getPiece(this.props.xCoord, this.props.yCoord)
+  //   console.log(this.props)
+  // }
 
   componentWillMount() {
-    this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
+    const pieceID = this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
   }
 
   render() {

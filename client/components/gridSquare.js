@@ -4,7 +4,7 @@ import drake from '../dragula';
 
 //creates a 50 X 50 Grid
 export default class GridSquare extends Component {
-  constructor(){
+  constructor() {
     super()
 
     this.state = {
@@ -13,7 +13,7 @@ export default class GridSquare extends Component {
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.setState({
       xCoord: this.props.x,
       yCoord: this.props.y
@@ -26,13 +26,13 @@ export default class GridSquare extends Component {
     }
   };
 
-  render(){
+  render() {
     // console.log(this.props)
-    return(
-        <div className={`gridSquare x=${this.props.x} y=${this.props.y}`} ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)}>
-          <div>
-          </div>
+    return (
+      <div className={`gridSquare x=${this.props.x} y=${this.props.y}`} ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)}>
+        <div>
         </div>
+      </div>
     )
   }
 

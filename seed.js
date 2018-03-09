@@ -13,28 +13,6 @@ const userDBseed =
         }
     ]
 
-const inventoryDBseed =
-    [
-        {
-            category: 'electronics',
-            item: 'laptops',
-            quantity: 50,
-            pieceId: 5
-        },
-        {
-            category: 'electronics',
-            item: 'PS3',
-            quantity: 100,
-            pieceId: 6
-        },
-        {
-            category: 'electronics',
-            item: 'X-box',
-            quantity: 25,
-            pieceId: 7
-        }
-    ]
-
 const pieceDBseed =
     [
         {
@@ -60,17 +38,26 @@ const pieceDBseed =
         {
             positionX: 5,
             positionY: 5,
-            wallOrCrate: 'crate'
+            wallOrCrate: 'crate',
+            category: 'electronics',
+            item: 'laptops',
+            quantity: 50
         },
         {
             positionX: 10,
             positionY: 10,
-            wallOrCrate: 'crate'
+            wallOrCrate: 'crate',
+            category: 'electronics',
+            item: 'PS3',
+            quantity: 100,
         },
         {
             positionX: 15,
             positionY: 15,
-            wallOrCrate: 'crate'
+            wallOrCrate: 'crate',
+            category: 'electronics',
+            item: 'X-box',
+            quantity: 25,
         },
 
     ]
@@ -78,7 +65,6 @@ const pieceDBseed =
 const seed = async () => {
     try {
         const piece = await Promise.all(pieceDBseed.map(piece => Piece.create(piece)));
-        const inventory = await Promise.all(inventoryDBseed.map(inventory => Inventory.create(inventory)))
     } catch (err) {
         console.log(err);
     }

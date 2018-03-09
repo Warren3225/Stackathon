@@ -7,7 +7,7 @@ import piece from './piece'
 import pieces from './pieces'
 import inventory from './inventory'
 
-const reducer = combineReducers({ user, piece, pieces, inventory })
+const reducer = combineReducers({ piece, pieces })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })
