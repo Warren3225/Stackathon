@@ -25,7 +25,7 @@ form div {
   width: 600px;
   display: flex;
   flex-wrap: wrap;
-  border-width: 2px;
+  border-width: 1.5px;
   border-style: solid;
   background-color: black;
 }
@@ -97,7 +97,6 @@ form div {
   height: 400px;
   width: 200px;
   background-color: red;
-
 }
 
 #modalBackground{

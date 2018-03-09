@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
   
   openModal(xCoord, yCoord){
-    //if(xCoord, yCoord correspond to a crate)
+    //if(xCoord, yCoord) correspond to a crate
     //set redux state 'current piece' equal to crate
     //set setState
     this.setState({
@@ -26,7 +26,7 @@ export default class Home extends Component {
   render(){
     return(
     <div id="homeWrapper">
-      {this.state.showModal? <Modal /> : ''}
+      {this.state.showModal? <Modal openModal={this.openModal} /> : ''}
       <Toolbar />
       <Grid openModal={this.openModal} />
     </div>

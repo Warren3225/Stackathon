@@ -11,7 +11,7 @@ export default class Modal extends Component {
       <div>
         <div id="modal">
         </div>
-        <div id="modalBackground">
+        <div id="modalBackground" onClick={this.props.openModal}>
         </div>
       </div>
     )
