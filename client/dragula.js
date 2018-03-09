@@ -4,13 +4,6 @@ import axios from 'axios';
 import store from './store/index'
 
 const drake = dragula({
-  isContainer: function (el) {
-    if (el.classList.contains('gridSquare')) {
-      return true;
-    } else {
-      return false;
-    }
-  },
   moves: function (el, source, handle, sibling) {
     if (el.classList.contains('gridSquare')) {
       return false;
