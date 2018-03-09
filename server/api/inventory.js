@@ -12,10 +12,14 @@ router.get('/', (req, res, next) => {
 })
 
 //get inventory for a piece
-router.get('/:id', (req, res, next) => {
+router.get('/:x:/y', (req, res, next) => {
+    const xAxis = req.params.x;
+    const yAxis = req.params.y;
     Inventory.findOne({
-        where: { pieceId: req.params.id },
-        include: [{ model: Piece }]
+        include: [{
+            model: Piece,
+            where: { positionX: xAxis, positionY: yAxis }
+        }]
     })
         .then(inventory => rse.json(inventory))
         .catch(next)
@@ -23,9 +27,14 @@ router.get('/:id', (req, res, next) => {
 
 
 // add inventory
-router.post('/', (req, res, next) => {
+router.post('/:x/:y', (req, res, next) => {
+    const xAxis = req.params.x;
+    const yAxis = req.params.y;
     Inventory.create(req.body, {
-        include: [{ model: Piece }]
+        include: [{
+            model: Piece,
+            where: { positionX: xAxis, positionY: yAxis }
+        }]
     })
         .then(newInventory => res.json(newInventory))
         .catch(next)

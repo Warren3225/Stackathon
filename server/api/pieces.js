@@ -11,8 +11,10 @@ router.get('/', (req, res, next) => {
 })
 
 //get a piece
-router.get('/:id', (req, res, next) => {
-    Piece.findById(req.params.id)
+router.get('/:x/:y', (req, res, next) => {
+    const xAxis = req.params.x;
+    const yAxis = req.params.y;
+    Piece.findOne({ where: { positionX: xAxis, positionY: yAxis } })
         .then(piece => res.json(piece))
         .catch(next)
 })
@@ -32,16 +34,15 @@ router.delete('/p/crates', (req, res, next) => {
 })
 
 //delete piece
-// router.delete('/:id', (req, res, next) => {
-//     const pieceId = req.params.id;
-//     const pieceToDelete = await Piece.findById(pieceId)
-//     pieceToDelete.destroy()
-//         .then(() => res.json({ id: pieceId }))
-// })
+router.delete('/:x/:y', (req, res, next) => {
+    const xAxis = req.params.x;
+    const yAxis = req.params.y;
+    pieceToDelete.destroy({ where: { positionX: xAxis, positionY: yAxis } })
+        .then(() => res.json({ id: pieceId }))
+})
 
 //create a piece 
 router.post('/', (req, res, next) => {
-    console.log(req.body)
     Piece.create(req.body)
         .then(piece => res.json(piece))
         .catch(next)

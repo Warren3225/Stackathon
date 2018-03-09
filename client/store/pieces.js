@@ -52,18 +52,16 @@ export const WipeAllCratePieces = () =>
 //             .then(res => dispatch(updatePiece(res.data || defaultPiece)))
 //             .catch(err => console.error(err))
 
-export const deletePieceThunk = (id) =>
+export const deletePieceThunk = (x,y) =>
     dispatch =>
-        axios.delete(`/api/pieces/${id}`)
+        axios.delete(`/api/pieces/${x}/${y}`)
             .then(res => dispatch(removePiece(res.data || defaultPiece)))
             .catch(err => console.error(err))
 
 export const createPieceThunk = (PieceToAdd) => {
-    console.log('hello')
     return dispatch =>
         axios.post('/api/pieces', PieceToAdd)
             .then(res => {
-                console.log('sdlfjndflsjf')
                 dispatch(createPiece(res.data))
             })
             .catch(err => console.error(err))
@@ -71,7 +69,6 @@ export const createPieceThunk = (PieceToAdd) => {
 
 //REDUCER
 export default function (state = defaultPieces, action) {
-    console.log(action);
     switch (action.type) {
         case GET_ALL_PIECES:
             return action.pieces;

@@ -23,6 +23,7 @@ const drake = dragula({
 
 
 drake.on('drop', (el, target) => {
+  
   let classes = [...target.classList];
   let objToPass = {}
   classes.forEach(elem => {

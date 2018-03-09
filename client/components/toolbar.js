@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopPane from './topPane';
+import BottomPane from './bottomPane'
 
 //creates a 50 X 50 Grid
 export default class Toolbar extends Component {
@@ -11,6 +12,7 @@ export default class Toolbar extends Component {
           <TopPane />
         </div>
         <div id="bottomPane">
+        <BottomPane/>
         </div>
       </div>
     )

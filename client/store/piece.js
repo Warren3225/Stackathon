@@ -10,9 +10,9 @@ const getPiece = piece => ({ type: GET_PIECE, piece })
 /**
  * THUNK CREATORS
  */
-export const fetchPiece = (id) =>
+export const fetchPiece = (x,y) =>
     dispatch =>
-        axios.get(`/api/pieces/${id}`)
+        axios.get(`/api/pieces/${x}/${y}`)
             .then(res => dispatch(getPiece(res.data)))
             .catch(err => console.error(err))
 
