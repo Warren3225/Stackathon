@@ -8,6 +8,11 @@ class Modal extends Component {
   constructor(props) {
     super(props)
   }
+  
+  componentDidMount(){
+    this.props.getPiece(this.props.xCoord, this.props.yCoord)
+    console.log(this.props)
+  }
 
   componentWillMount() {
     this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
@@ -70,4 +75,11 @@ const mapDispatch = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Modal);
+// export default connect(mapState, mapDispatch)(Modal);
+// =======
+// const mapState = ({ piece }) => ({ piece })
+// const mapDispatch = (dispatch) => { return ({
+//   getPiece(x, y){ dispatch(fetchPiece(x, y))},
+// })}
+
+export default connect(mapState, mapDispatch)(Modal)
