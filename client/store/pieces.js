@@ -4,8 +4,11 @@ import axios from 'axios';
 const GET_ALL_PIECES = 'GET_ALL_PIECES';
 const DELETE_ALL_PIECES = 'DELETE_ALL_PIECES';
 const DELETE_ALL_CRATE_PIECES = 'DELETE_ALL_CRATE_PIECES'
+//--------------------------------------------
+const GET_BY_CATEGORY_PIECES = 'GET_BY_CATEGORY_PIECES'
+const GET_BY_ITEM_PIECES = 'GET_BY_ITEM_PIECES'
 //---------------------------------------------
-// const UPDATE_PIECE = 'UPDATE_PIECE';
+const UPDATE_PIECE = 'UPDATE_PIECE';
 const DELETE_PIECE = 'DELETE_PIECE';
 const CREATE_PIECE = 'CREATE_PIECE';
 
@@ -18,19 +21,33 @@ const getAllPieces = pieces => ({ type: GET_ALL_PIECES, pieces })
 const deleteAllPieces = () => ({ type: DELETE_ALL_PIECES })
 const deleteAllCratePieces = (walls) => ({ type: DELETE_ALL_CRATE_PIECES, walls })
 //---------------------------------------------
-// const updatePiece = piece => ({ type: UPDATE_PIECE, piece })
+const getCategoryPieces = (pieces) => ({ type: GET_BY_CATEGORY_PIECES, pieces })
+const getItemPieces = (pieces) => ({ type: GET_BY_ITEM_PIECES, pieces })
+//---------------------------------------------
+const updatePiece = piece => ({ type: UPDATE_PIECE, piece })
 const deletePiece = id => ({ type: DELETE_PIECE, id })
-const createPiece = piece => {
-    console.log('sdfjnsdf')
-    return { type: CREATE_PIECE, piece }
-}
+const createPiece = piece => ({ type: CREATE_PIECE, piece })
 
 
 //Thunks
+
 export const fetchAllPieces = () =>
     dispatch =>
-        axios.get('api/pieces')
+        axios.get(`api/pieces`)
             .then(res => dispatch(getAllPieces(res.data || defaultPieces)))
+            .catch(error => console.log(error));
+
+
+export const fetchByCategoryPieces = (category) =>
+    dispatch =>
+        axios.get(`api/pieces/category/${category}`)
+            .then(res => dispatch(getCategoryPieces(res.data || defaultPieces)))
+            .catch(error => console.log(error));
+
+export const fetchbyItemPieces = (item) =>
+    dispatch =>
+        axios.get(`api/pieces/item/${item}`)
+            .then(res => dispatch(getItemPieces(res.data || defaultPieces)))
             .catch(error => console.log(error));
 
 export const WipeAllPieces = () =>
@@ -45,14 +62,14 @@ export const WipeAllCratePieces = () =>
             .then((res) => dispatch(deleteAllCratePieces(res.data)))
             .catch(error => console.log(error));
 
-//---------------------------------------------
-// export const updatePieceThunk = (piece, id) =>
-//     dispatch =>
-//         axios.put(`/api/pieces/${id}`, piece)
-//             .then(res => dispatch(updatePiece(res.data || defaultPiece)))
-//             .catch(err => console.error(err))
+// ---------------------------------------------
+export const updatePieceThunk = (piece, x, y) =>
+    dispatch =>
+        axios.put(`/api/pieces/${x}/${y}`, piece)
+            .then(res => dispatch(updatePiece(res.data || defaultPiece)))
+            .catch(err => console.error(err))
 
-export const deletePieceThunk = (x,y) =>
+export const deletePieceThunk = (x, y) =>
     dispatch =>
         axios.delete(`/api/pieces/${x}/${y}`)
             .then(res => dispatch(deletePiece(res.data || defaultPiece)))
@@ -72,10 +89,14 @@ export default function (state = defaultPieces, action) {
             return action.pieces;
         case DELETE_ALL_PIECES:
             return [];
+        case GET_BY_CATEGORY_PIECES:
+            return action.pieces
+        case GET_BY_ITEM_PIECES:
+            return action.pieces
         case DELETE_ALL_CRATE_PIECES:
             return action.walls
-        // case UPDATE_PIECE:
-        //     return state.map(piece => (action.id === piece.id ? action.piece : piece))
+        case UPDATE_PIECE:
+            return state.map(piece => (action.id === piece.id ? action.piece : piece))
         case CREATE_PIECE:
             return [action.piece, ...state]
         case DELETE_PIECE:

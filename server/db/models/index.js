@@ -1,11 +1,11 @@
 const User = require('./user')
-const Piece = require('./piece')
+const Piece = require('./newPieceModel')
 const Inventory = require('./inventory')
 
 
 //User.hasMany(Piece); //piece has userId
-Inventory.belongsTo(Piece); //adds pieceId to inventory table
-Piece.hasOne(Inventory) //adds inventoryId to piece table
+// Inventory.belongsTo(Piece); //adds pieceId to inventory table
+// Piece.hasOne(Inventory) //adds inventoryId to piece table
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -21,7 +21,5 @@ Piece.hasOne(Inventory) //adds inventoryId to piece table
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User,
-  Piece,
-  Inventory
+  Piece
 }
