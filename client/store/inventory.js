@@ -26,15 +26,15 @@ export const getInventoriesThunk = () =>
             .then(res => dispatch(getInventories(res.data || defaultReviews)))
             .catch(err => console.error(err));
 
-export const getInventoryForPieceThunk = (pieceId) =>
+export const getInventoryForPieceThunk = (x, y) =>
     dispatch =>
-        axios.get(`/api/inventory/${pieceId}`)
+        axios.get(`/api/inventory/${x}/${y}`)
             .then(res => dispatch(getInventoryForPiece(res.data || defaultReviews)))
             .catch(err => console.error(err));
 
-export const postInventoryThunk = (inventory) =>
+export const postInventoryThunk = (inventory, x, y) =>
     dispatch =>
-        axios.post('/api/inventory', inventory)
+        axios.post(`/api/inventory/${x}/${y}`, inventory)
             .then(res => dispatch(postInventory(res.data || defaultReviews)))
             .catch(err => console.error(err));
 
