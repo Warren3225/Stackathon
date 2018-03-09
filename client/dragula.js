@@ -28,10 +28,11 @@ const drake = dragula({
 // })
 
 drake.on('drop', (el, target, source) => {
+  console.log('drop');
 
   let sourceClasses = [...source.classList];
-  let xCoord = null;
-  let yCoord = null;
+  let xCoord = 'unset';
+  let yCoord = 'unset';
   sourceClasses.forEach(elem => {
     if (elem[0] === 'x') {
       xCoord = +elem.slice(2)
@@ -39,6 +40,7 @@ drake.on('drop', (el, target, source) => {
       yCoord = +elem.slice(2)
     }
   })
+  console.log(xCoord, yCoord)
 
   let classes = [...target.classList];
   let objToPass = {}
@@ -56,11 +58,18 @@ drake.on('drop', (el, target, source) => {
   } else if (el.classList.contains('wall')) {
     objToPass.wallOrCrate = 'wall';
   }
-  if(xCoord && yCoord){
+  if (xCoord >= 0 && yCoord >= 0){
+  console.log('hello');
+  if (xCoord === 'unset' && yCoord === 'unset'){
+    store.dispatch(createPieceThunk(objToPass)).then(
+      store.dispatch(fetchAllPieces())
+    )
+  } else {
   store.dispatch(deletePieceThunk(xCoord, yCoord))
   store.dispatch(createPieceThunk(objToPass)).then(
     store.dispatch(fetchAllPieces())
   )
+  }
   }
 })
 
