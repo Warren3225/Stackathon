@@ -10,6 +10,7 @@ class BottomPane extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Grid
@@ -35,6 +36,9 @@ class BottomPane extends Component {
                                 placeholder='ex. Laptops' />
                             <Button type='submit'>Submit</Button>
                         </Form>
+                        <Button type='submit' onClick={this.props.deleteAllCrates}>Delete All Crates</Button>
+                        <Button type='submit' onClick={this.props.clearBoard}>Clear Board</Button>
+                        <Button type='submit' onClick={this.props.reloadAllCrates}>Reload All Crates</Button>
                     </Grid.Column>
                 </Grid>
             </div>
@@ -48,11 +52,11 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         onCategorySearch(event) {
             event.preventDefault();
-            dispatch(fetchByCategoryPieces(event.target.category.value))
+            dispatch(fetchByCategoryPieces(event.target.category.value.toLowerCase()))
         },
         onItemSearch(event) {
             event.preventDefault();
-            dispatch(fetchbyItemPieces(event.target.item.value))
+            dispatch(fetchbyItemPieces(event.target.item.value.toLowerCase()))
         }
     }
 }

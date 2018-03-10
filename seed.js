@@ -55,8 +55,8 @@ const pieceDBseed =
             positionX: 15,
             positionY: 15,
             wallOrCrate: 'crate',
-            category: 'electronics',
-            item: 'X-box',
+            category: 'clothing',
+            item: `sweaters`,
             quantity: 25,
         },
 

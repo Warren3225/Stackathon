@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { fetchPiece } from '../store/piece'
-import { updatePieceThunk, deletePieceThunk } from '../store/pieces'
+import { updatePieceThunk, deletePieceThunk, fetchAllPieces } from '../store/pieces'
 
 class Modal extends Component {
   constructor(props) {
@@ -19,8 +19,9 @@ class Modal extends Component {
 
   componentWillMount() {
     this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
-
   }
+  
+
 
   handleCategoryChange(event) {
     event.preventDefault()
@@ -75,7 +76,7 @@ class Modal extends Component {
                   onChange={this.handleQuantityChange} />
                 <Button type='submit'>Submit</Button>
               </Form>
-              <Button type='submit' onClick={() => this.props.deleteCrate(pieceX, pieceY)}>Delete Crate</Button>
+              <Button type='submit' onClick={() => this.props.deleteCrate(pieceId)}>Delete Crate</Button>
             </Grid.Column>
           </Grid>
         </div>
@@ -100,11 +101,7 @@ const mapDispatch = (dispatch, ownProps) => {
         item: event.target.item.value,
         quantity: event.target.quantity.value,
         pieceId: id
-      }, ownProps.xCoord, ownProps.yCoord))
-      ownProps.closeModal()
-    },
-    deleteCrate(x, y) {
-      dispatch(deletePieceThunk(ownProps.xCoord, ownProps.yCoord))
+      }, ownProps.xCoord, ownProps.yCoord)).then(ownProps.closeModal())
     }
   }
 }
