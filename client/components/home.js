@@ -18,18 +18,6 @@ class Home extends Component {
    this.closeModal = this.closeModal.bind(this);
  }
 
-
-// <<<<<<< FIN-Modal
-//  render() {
-//    return (
-//      <div id="homeWrapper">
-//        {this.state.showModal ? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
-//        <Toolbar />
-//        <Grid openModal={this.openModal} />
-//      </div>
-//    )
-//  }
-// =======
   componentWillMount(){
     this.props.fetchPieces();
   }
