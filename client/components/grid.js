@@ -11,11 +11,11 @@ export default class Grid extends Component {
   //from https://github.com/react-dnd/react-dnd/blob/master/examples/00%20Chessboard/Tutorial%20App/Board.js
   renderSquares(i) {
     const x = i % 20
-    const y = Math.floor(i / 20)
+    const y = Math.floor (i / 20)
 
     return (
       <div key={i}>
-        <GridSquare x={x} y={y} openModal={this.props.openModal} />
+        <GridSquare x={x} y={y} openModal={this.props.openModal} boardPieces={this.props.boardPieces} />
       </div>
     )
   }
