@@ -19,8 +19,9 @@ class Modal extends Component {
 
   componentWillMount() {
     this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
-
   }
+  
+
 
   handleCategoryChange(event) {
     event.preventDefault()
@@ -75,7 +76,7 @@ class Modal extends Component {
                   onChange={this.handleQuantityChange} />
                 <Button type='submit'>Submit</Button>
               </Form>
-              <Button type='submit' onClick={() => this.props.deleteCrate(pieceX, pieceY)}>Delete Crate</Button>
+              <Button type='submit' onClick={() => this.props.deleteCrate(pieceId)}>Delete Crate</Button>
             </Grid.Column>
           </Grid>
         </div>
@@ -101,11 +102,6 @@ const mapDispatch = (dispatch, ownProps) => {
         quantity: event.target.quantity.value,
         pieceId: id
       }, ownProps.xCoord, ownProps.yCoord)).then(ownProps.closeModal())
-    },
-    deleteCrate(x, y) {
-      dispatch(deletePieceThunk(ownProps.xCoord, ownProps.yCoord)).then(
-        ownProps.forceBoardRerender()
-      )
     }
   }
 }

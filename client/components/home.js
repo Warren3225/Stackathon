@@ -4,30 +4,29 @@ import Grid from './grid';
 import Toolbar from './toolbar';
 import Modal from './modal';
 import { fetchPiece } from '../store/piece';
-import { fetchAllPieces } from '../store/pieces';
+import { fetchAllPieces, deletePieceThunk, WipeAllCratePieces, WipeAllPieces } from '../store/pieces';
 import drake from '../dragula'
 
 class Home extends Component {
- constructor() {
-   super()
+  constructor() {
+    super()
 
-   this.state = {
-     showModal: false,
-   }
-   this.openModal = this.openModal.bind(this);
-   this.closeModal = this.closeModal.bind(this);
-   this.forceBoardRerender = this.forceBoardRerender.bind(this);
- }
+    this.state = {
+      showModal: false,
+    }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.fetchPieces();
   }
 
-  openModal(xCoord, yCoord){
-    let boxOrCrate = this.props.pieces.some( piece => {
-      return(piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
+  openModal(xCoord, yCoord) {
+    let boxOrCrate = this.props.pieces.some(piece => {
+      return (piece.positionX === xCoord && piece.positionY === yCoord && piece.wallOrCrate !== 'wall')
     })
-    if(boxOrCrate){
+    if (boxOrCrate) {
       this.setState({
         xCoord: xCoord,
         yCoord: yCoord,
@@ -36,39 +35,52 @@ class Home extends Component {
     }
   }
 
-  closeModal(){
+  closeModal() {
     this.setState({
       showModal: false
     })
   }
 
-  forceBoardRerender() {
-    this.forceUpdate()
-  }
 
   render() {
     return (
       <div id="homeWrapper">
-        {this.state.showModal && <Modal openModal={this.openModal} 
-        xCoord={this.state.xCoord} 
-        yCoord={this.state.yCoord} 
-        closeModal={this.closeModal}
-        forceBoardRerender={this.forceBoardRerender} />}
-        <Toolbar />
+        {this.state.showModal && <Modal openModal={this.openModal}
+          xCoord={this.state.xCoord}
+          yCoord={this.state.yCoord}
+          closeModal={this.closeModal}
+          deleteCrate={this.props.deleteCrate} />}
+        <Toolbar
+        deleteAllCrates={this.props.deleteAllCrates}
+        clearBoard={this.props.clearBoard}
+        reloadAllCrates={this.props.reloadAllCrates}
+        />
         <Grid openModal={this.openModal} boardPieces={this.props.pieces} />
       </div>
     )
   }
-// >>>>>>> master
+  // >>>>>>> master
 
 }
 
 const mapState = ({ piece, pieces }) => ({ piece, pieces })
 const mapDispatch = (dispatch) => {
- return ({
-   getPiece(x, y) { dispatch(fetchPiece(x, y)) },
-   fetchPieces() { dispatch(fetchAllPieces()) }
- })
+  return ({
+    getPiece(x, y) { dispatch(fetchPiece(x, y)) },
+    fetchPieces() { dispatch(fetchAllPieces()) },
+    deleteCrate(id) {
+      dispatch(deletePieceThunk(id))
+    },
+    deleteAllCrates() {
+      dispatch(WipeAllCratePieces())
+    },
+    clearBoard() {
+      dispatch(WipeAllPieces())
+    },
+    reloadAllCrates() {
+      dispatch(fetchAllPieces())
+    }
+  })
 }
 
 

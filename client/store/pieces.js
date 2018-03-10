@@ -69,11 +69,11 @@ export const updatePieceThunk = (piece, x, y) =>
             .then(res => dispatch(updatePiece(res.data || defaultPiece)))
             .catch(err => console.error(err))
 
-export const deletePieceThunk = (x, y) =>
-    dispatch =>
-        axios.delete(`/api/pieces/${x}/${y}`)
-            .then(res => dispatch(deletePiece(res.data || defaultPiece)))
-            .catch(err => console.error(err))
+export const deletePieceThunk = (id) =>
+    dispatch => {
+        dispatch(deletePiece(id || defaultPiece))
+        axios.delete(`/api/pieces/${id}`)
+    }
 
 export const createPieceThunk = (PieceToAdd) => {
     return dispatch =>
@@ -100,7 +100,10 @@ export default function (state = defaultPieces, action) {
         case CREATE_PIECE:
             return [action.piece, ...state]
         case DELETE_PIECE:
-            return state.filter(piece => piece.id !== action.id);
+            return state.filter(piece => {
+                console.log('each piece', piece.id, 'action id', action.id)
+                return piece.id !== action.id
+            });
         default:
             return state
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
-import { fetchByCategoryPieces, fetchbyItemPieces, WipeAllCratePieces, WipeAllPieces } from '../store/pieces'
+import { fetchByCategoryPieces, fetchbyItemPieces } from '../store/pieces'
 
 
 class BottomPane extends Component {
@@ -10,6 +10,7 @@ class BottomPane extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Grid
@@ -35,8 +36,9 @@ class BottomPane extends Component {
                                 placeholder='ex. Laptops' />
                             <Button type='submit'>Submit</Button>
                         </Form>
-                        <Button type='submit' onClick={this.props.deleteCrate}>Delete All Crates</Button>
+                        <Button type='submit' onClick={this.props.deleteAllCrates}>Delete All Crates</Button>
                         <Button type='submit' onClick={this.props.clearBoard}>Clear Board</Button>
+                        <Button type='submit' onClick={this.props.reloadAllCrates}>Reload All Crates</Button>
                     </Grid.Column>
                 </Grid>
             </div>
@@ -50,17 +52,11 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         onCategorySearch(event) {
             event.preventDefault();
-            dispatch(fetchByCategoryPieces(event.target.category.value))
+            dispatch(fetchByCategoryPieces(event.target.category.value.toLowerCase()))
         },
         onItemSearch(event) {
             event.preventDefault();
-            dispatch(fetchbyItemPieces(event.target.item.value))
-        },
-        deleteCrate() {
-            dispatch(WipeAllCratePieces())
-        },
-        clearBoard() {
-            dispatch(WipeAllPieces())
+            dispatch(fetchbyItemPieces(event.target.item.value.toLowerCase()))
         }
     }
 }
