@@ -63,16 +63,9 @@ form div {
   justify-content: space-around;
 }
 
-#wallLabel{
-  width: 75px;
-}
-
-#crateLable{
-  width: 75px;
-}
 
 .wallContainer{
-  margin-top: 62.5px;
+  margin-top: 10.5px;
 }
 
 .wall{
@@ -85,8 +78,15 @@ form div {
   margin-bottom: 5px;
 }
 
+.crateComponentWrapper{
+  text-align: center;
+}
+
+.wallComponentWrapper{
+  text-align:  center;
+}
 .crateContainer{
-  margin-top: 62.5px;
+  margin-top: 10.5px;
 }
 
 .crate{

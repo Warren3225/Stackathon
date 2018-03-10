@@ -8,8 +8,6 @@ export default class TopPane extends Component {
   render() {
     return (
       <div id='topPaneWrapper'>
-        <p id='wallLabel'> Wall </p>
-        <p id='crateLabel'> Crate </p>
         <Wall />
         <Crate />
       </div>

@@ -15,9 +15,12 @@ export default class Wall extends Component {
 
   render(){
     return (
+      <div id="wallComponentWrapper">
+      <p> Wall </p>
       <div className="wallContainer" ref={this.dragulaDecorator}>
         <div className="wall">
         </div>
+      </div>
       </div>
     )
   }
