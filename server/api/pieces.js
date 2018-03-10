@@ -23,6 +23,7 @@ router.get('/item/:item', (req, res, next) => { //DONE
 router.get('/:x/:y', (req, res, next) => {
     const xAxis = req.params.x;
     const yAxis = req.params.y;
+    console.log('x,y', xAxis, yAxis);
     Piece.findOne({ where: { positionX: xAxis, positionY: yAxis } })
         .then(piece => res.json(piece))
         .catch(next)
