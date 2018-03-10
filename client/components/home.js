@@ -19,6 +19,17 @@ class Home extends Component {
  }
 
 
+// <<<<<<< FIN-Modal
+//  render() {
+//    return (
+//      <div id="homeWrapper">
+//        {this.state.showModal ? <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} /> : ''}
+//        <Toolbar />
+//        <Grid openModal={this.openModal} />
+//      </div>
+//    )
+//  }
+// =======
   componentWillMount(){
     this.props.fetchPieces();
   }
@@ -53,6 +64,7 @@ class Home extends Component {
       </div>
     )
   }
+// >>>>>>> master
 
 }
 
