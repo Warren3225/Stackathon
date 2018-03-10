@@ -2,21 +2,46 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { fetchPiece } from '../store/piece'
-import { updatePieceThunk } from '../store/pieces'
+import { updatePieceThunk, deletePieceThunk } from '../store/pieces'
 
 class Modal extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      category: '',
+      item: '',
+      quantity: ''
+    }
+    this.handleCategoryChange = this.handleCategoryChange.bind(this)
+    this.handleItemChange = this.handleItemChange.bind(this)
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
   }
 
   componentWillMount() {
     this.props.loadPieceData(this.props.xCoord, this.props.yCoord)
+
   }
 
+  handleCategoryChange(event) {
+    event.preventDefault()
+    this.setState({ category: event.target.value.toLowerCase() })
+  }
+
+  handleItemChange(event) {
+    event.preventDefault()
+    this.setState({ item: event.target.value.toLowerCase() })
+  }
+
+  handleQuantityChange(event) {
+    event.preventDefault()
+    this.setState({ quantity: event.target.value.toLowerCase() })
+  }
+
+  //COME BACK TO FIX THIS LATER Quantity is not working
   render() {
     let pieceId = this.props.piece.id
-    console.log('props', this.props);
-    console.log('state', this.state);
+    let pieceX = this.props.piece.positionX;
+    let pieceY = this.props.piece.positionY;
     return (
       <div>
         <div id="modal">
@@ -32,21 +57,29 @@ class Modal extends Component {
                 <label>Category</label>
                 <Form.Input
                   name='category'
-                  placeholder={this.props.piece.category} />
+                  placeholder={this.props.piece.category || this.state.category}
+                  value={this.state.category}
+                  onChange={this.handleCategoryChange} />
                 <label>Item</label>
                 <Form.Input
                   name='item'
-                  placeholder={this.props.piece.item} />
+                  placeholder={this.props.piece.item || this.state.item}
+                  value={this.state.item}
+                  onChange={this.handleItemChange} />
+
                 <label>Quantity</label>
                 <Form.Input
                   name='quantity'
-                  placeholder={this.props.piece.quantity} />
+                  placeholder={this.props.piece.quantity || this.state.quantity}
+                  value={this.state.quantity}
+                  onChange={this.handleQuantityChange} />
                 <Button type='submit'>Submit</Button>
               </Form>
+              <Button type='submit' onClick={() => this.props.deleteCrate(pieceX, pieceY)}>Delete Crate</Button>
             </Grid.Column>
           </Grid>
         </div>
-        <div id="modalBackground">
+        <div id="modalBackground" onClick={this.props.closeModal}>
         </div>
       </div>
     )
@@ -67,8 +100,11 @@ const mapDispatch = (dispatch, ownProps) => {
         item: event.target.item.value,
         quantity: event.target.quantity.value,
         pieceId: id
-      }, ownProps.xCoord, ownProps.yCoord))      
+      }, ownProps.xCoord, ownProps.yCoord))
       ownProps.closeModal()
+    },
+    deleteCrate(x, y) {
+      dispatch(deletePieceThunk(ownProps.xCoord, ownProps.yCoord))
     }
   }
 }
