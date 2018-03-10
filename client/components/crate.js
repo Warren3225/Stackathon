@@ -14,8 +14,11 @@ export default class Crate extends Component {
 
   render(){
     return (
-      <div className="crateContainer" ref={this.dragulaDecorator}>
-        <div className="crate">
+      <div id="crateComponentWrapper">
+        <p> Crate </p>
+        <div className="crateContainer" ref={this.dragulaDecorator}>
+          <div className="crate">
+          </div>
         </div>
       </div>
     )

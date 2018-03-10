@@ -44,19 +44,6 @@ export default class GridSquare extends Component {
       let boxOrCrate = this.props.boardPieces.some( piece => {
         return (piece.positionX === this.props.x && piece.positionY === this.props.y && piece.wallOrCrate === 'wall')
       })
-      // if (document.getElementById(`x${this.props.x}y${this.props.y}`) !== null){
-      //   let children = document.getElementById(`x${this.props.x}y${this.props.y}`).children;
-      //   children = [...children];
-      //   let counter = 0;
-      //   children.forEach(child =>{
-      //     if (child.classList.contains('crate')){
-      //       if (counter >= 1){
-      //         boxOrCrate = false
-      //       }
-      //       counter++;
-      //     }
-      //   })
-      // }
       return boxOrCrate;
     }
   }
@@ -66,28 +53,19 @@ export default class GridSquare extends Component {
       let boxOrCrate = this.props.boardPieces.some( piece => {
         return (piece.positionX === this.props.x && piece.positionY === this.props.y && piece.wallOrCrate === 'crate')
       })
-      // if (document.getElementById(`x${this.props.x}y${this.props.y}`) !== null){
-      //   let children = document.getElementById(`x${this.props.x}y${this.props.y}`).children;
-      //   let counter = 0;
-      //   children = [...children];
-      //   children.forEach(child => {
-      //     if (child.classList.contains('crate')){
-      //       if (counter >= 1){
-      //         boxOrCrate = false
-      //       }
-      //       counter++;
-      //     }
-      //   })
-      // }
       return boxOrCrate;
     }
+  }
+
+  displayInfo(){
+    console.log('hover');
   }
 
   //currently double drawing boxes
   render() {
     return (
       <div id={`x${this.props.x}y${this.props.y}`} className={`gridSquare x=${this.props.x} y=${this.props.y}`}
-         ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)} onHover={() => this.props.displayInfo}>
+         ref={this.dragulaDecorator} onClick={() => this.props.openModal(this.props.x, this.props.y)} onMouseOver={() => this.displayInfo}>
           {this.crateCheck() &&
             <div className="crate">
             </div>
