@@ -8,15 +8,16 @@ import { fetchAllPieces } from '../store/pieces';
 import drake from '../dragula'
 
 class Home extends Component {
-  constructor() {
-    super()
+ constructor() {
+   super()
 
-    this.state = {
-      showModal: false,
-    }
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
+   this.state = {
+     showModal: false,
+   }
+   this.openModal = this.openModal.bind(this);
+   this.closeModal = this.closeModal.bind(this);
+ }
+
 
   componentWillMount(){
     this.props.fetchPieces();
@@ -52,14 +53,15 @@ class Home extends Component {
       </div>
     )
   }
+
 }
 
 const mapState = ({ piece, pieces }) => ({ piece, pieces })
 const mapDispatch = (dispatch) => {
-  return ({
-    getPiece(x, y) { dispatch(fetchPiece(x, y)) },
-    fetchPieces() { dispatch(fetchAllPieces()) }
-  })
+ return ({
+   getPiece(x, y) { dispatch(fetchPiece(x, y)) },
+   fetchPieces() { dispatch(fetchAllPieces()) }
+ })
 }
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
-import { getInventoriesByCategoryThunk, getInventoriesByItemThunk } from '../store/inventory'
+import { fetchByCategoryPieces, fetchbyItemPieces } from '../store/pieces'
 
 
 class BottomPane extends Component {
@@ -48,11 +48,11 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         onCategorySearch(event) {
             event.preventDefault();
-            dispatch(getInventoriesByCategoryThunk(event.target.category.value))
+            dispatch(fetchByCategoryPieces(event.target.category.value))
         },
         onItemSearch(event) {
             event.preventDefault();
-            dispatch(getInventoriesByItemThunk(event.target.item.value))
+            dispatch(fetchbyItemPieces(event.target.item.value))
         }
     }
 }
