@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { fetchPiece } from '../store/piece'
-import { updatePieceThunk, deletePieceThunk } from '../store/pieces'
+import { updatePieceThunk, deletePieceThunk, fetchAllPieces } from '../store/pieces'
 
 class Modal extends Component {
   constructor(props) {
@@ -100,11 +100,12 @@ const mapDispatch = (dispatch, ownProps) => {
         item: event.target.item.value,
         quantity: event.target.quantity.value,
         pieceId: id
-      }, ownProps.xCoord, ownProps.yCoord))
-      ownProps.closeModal()
+      }, ownProps.xCoord, ownProps.yCoord)).then(ownProps.closeModal())
     },
     deleteCrate(x, y) {
-      dispatch(deletePieceThunk(ownProps.xCoord, ownProps.yCoord))
+      dispatch(deletePieceThunk(ownProps.xCoord, ownProps.yCoord)).then(
+        ownProps.forceBoardRerender()
+      )
     }
   }
 }

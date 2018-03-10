@@ -16,6 +16,7 @@ class Home extends Component {
    }
    this.openModal = this.openModal.bind(this);
    this.closeModal = this.closeModal.bind(this);
+   this.forceBoardRerender = this.forceBoardRerender.bind(this);
  }
 
   componentWillMount(){
@@ -41,10 +42,18 @@ class Home extends Component {
     })
   }
 
+  forceBoardRerender() {
+    this.forceUpdate()
+  }
+
   render() {
     return (
       <div id="homeWrapper">
-        {this.state.showModal && <Modal openModal={this.openModal} xCoord={this.state.xCoord} yCoord={this.state.yCoord} closeModal={this.closeModal} />}
+        {this.state.showModal && <Modal openModal={this.openModal} 
+        xCoord={this.state.xCoord} 
+        yCoord={this.state.yCoord} 
+        closeModal={this.closeModal}
+        forceBoardRerender={this.forceBoardRerender} />}
         <Toolbar />
         <Grid openModal={this.openModal} boardPieces={this.props.pieces} />
       </div>

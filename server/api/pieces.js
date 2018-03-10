@@ -2,6 +2,21 @@ const router = require('express').Router()
 const { Piece } = require('../db/models')
 module.exports = router
 
+
+//delete all pieces DONE
+router.delete('/p/all', (req, res, next) => {
+    Piece.destroy({ where: {} })
+        .then(() => res.send('Your board has been cleared'))
+        .catch(next)
+})
+
+//delete all crates DONE
+router.delete('/p/crates', (req, res, next) => {
+    Piece.destroy({ where: { wallOrCrate: 'crate' } })
+        .then(() => Piece.findAll().then(result => res.send(result)))
+        .catch(next)
+})
+
 //get pieces  by category  //DONE
 router.get('/category/:category', (req, res, next) => {
     Piece.findAll({
@@ -23,25 +38,11 @@ router.get('/item/:item', (req, res, next) => { //DONE
 router.get('/:x/:y', (req, res, next) => {
     const xAxis = req.params.x;
     const yAxis = req.params.y;
-    console.log('x,y', xAxis, yAxis);
     Piece.findOne({ where: { positionX: xAxis, positionY: yAxis } })
         .then(piece => res.json(piece))
         .catch(next)
 })
 
-//delete all pieces DONE
-router.delete('/p/all', (req, res, next) => {
-    Piece.destroy({ where: {} })
-        .then(() => res.send('Your board has been cleared'))
-        .catch(next)
-})
-
-//delete all crates DONE
-router.delete('/p/crates', (req, res, next) => {
-    Piece.destroy({ where: { wallOrCrate: 'crate' } })
-        .then(walls => res.json(walls))
-        .catch(next)
-})
 
 //delete piece DONE
 router.delete('/:x/:y', (req, res, next) => {
