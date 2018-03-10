@@ -36,6 +36,141 @@ const pieceDBseed =
             wallOrCrate: 'wall'
         },
         {
+            positionX: 1,
+            positionY: 5,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 6,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 7,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 8,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 9,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 10,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 11,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 1,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 2,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 3,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 4,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 5,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 6,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 7,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 1,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 2,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 3,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 4,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 5,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 6,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 7,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 8,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 9,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 10,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 11,
+            wallOrCrate: 'wall'
+        },
+        {
+            positionX: 8,
+            positionY: 12,
+            wallOrCrate: 'wall'
+        },
+        {
             positionX: 5,
             positionY: 5,
             wallOrCrate: 'crate',
