@@ -44,6 +44,8 @@ class Home extends Component {
 
   render() {
     return (
+      <div>
+      <div><h1>STASH - Warehouse Inventory Simulator v0.7</h1></div>
       <div id="homeWrapper">
         {this.state.showModal && <Modal openModal={this.openModal}
           xCoord={this.state.xCoord}
@@ -56,6 +58,7 @@ class Home extends Component {
         reloadAllCrates={this.props.reloadAllCrates}
         />
         <Grid openModal={this.openModal} boardPieces={this.props.pieces} />
+      </div>
       </div>
     )
   }

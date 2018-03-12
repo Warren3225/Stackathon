@@ -100,10 +100,7 @@ export default function (state = defaultPieces, action) {
         case CREATE_PIECE:
             return [action.piece, ...state]
         case DELETE_PIECE:
-            return state.filter(piece => {
-                console.log('each piece', piece.id, 'action id', action.id)
-                return piece.id !== action.id
-            });
+            return state.filter(piece => {return piece.id !== action.id});
         default:
             return state
     }
